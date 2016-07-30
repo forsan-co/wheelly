@@ -1,0 +1,12 @@
+{
+    "name": "seregazhuk/wheel",
+    "description": "micro HTTP framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zhuk Sergey",
+            "email": "seregazhuk88@gmail.com"
+        }
+    ],
+    "require": {}
+}
