@@ -1,2 +1,2 @@
 # wheelly
-PHP micro HTTP framework, based on Symfony components.
+PHP micro HTTP framework.
