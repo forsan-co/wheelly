@@ -14,14 +14,12 @@ class QueryBuilder
 
     public function selectAll($table)
     {
-        return $this->executeSelect($table)
-            ->fetchAll(PDO::FETCH_CLASS); 
+        return $this->executeSelect($table)->fetchAll(); 
     }
 
     public function selectOne($table)
     {
-         return $this->executeSelect($table)
-            ->fetch(PDO::FETCH_CLASS); 
+         return $this->executeSelect($table)->fetch(); 
     }
 
     public function insert($attributes, $table)
@@ -29,7 +27,6 @@ class QueryBuilder
         $columns = implode(", ", array_keys($attributes));
         $params = implode(", ", array_fill(0, count($attributes), '?'));
 
-        var_dump("INSERT INTO {$table} ($columns) VALUES ($params)");
         $statement = $this->pdo->prepare("INSERT INTO {$table} ($columns) VALUES ($params)");
 
         return $statement->execute(array_values($attributes));

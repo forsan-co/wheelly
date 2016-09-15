@@ -6,7 +6,7 @@ class Application implements ArrayAccess
 	 * @var array
 	 */
 	protected $container;
-
+ 
 	public function offsetGet($offset) {
 		if(!isset($this->container[$offset])){
 			return null;
