@@ -22,14 +22,18 @@ class QueryBuilder
          return $this->executeSelect($table)->fetch(); 
     }
 
-    public function insert($attributes, $table)
-    {
-        $columns = implode(", ", array_keys($attributes));
-        $params = implode(", ", array_fill(0, count($attributes), '?'));
+    public function insert($table, $parameters)
+    {        
+        $sql = sprintf(
+            "INSERT INTO %s (%s) VALUES (%s)",
+            $table, 
+            implode(", ", array_keys($parameters)),
+            ':' . implode(", :", array_keys($parameters))
+        );
 
-        $statement = $this->pdo->prepare("INSERT INTO {$table} ($columns) VALUES ($params)");
+        $statement = $this->pdo->prepare($sql);
 
-        return $statement->execute(array_values($attributes));
+        return $statement->execute($parameters);
     }
 
     protected function executeSelect($table)

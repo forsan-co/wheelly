@@ -1,5 +1,4 @@
 <?php
 
-$tasks = $app['database']->selectAll('todos');
-$app['database']->insert(['description' => 'test', 'completed' => 1], 'todos');
+$users = $app['database']->selectAll('users');
 require 'views/index.view.php';
