@@ -2,8 +2,15 @@
 
 class Connection 
 {
+    /**
+     * @var PDO
+     */
     protected static $connection;
 
+    /**
+     * @param array $config
+     * @return PDO
+     */
     public static function make($config)
     {
         try {
@@ -21,11 +28,12 @@ class Connection
         }
     }
 
+    /**
+     * @param $mode
+     */
     public static function setFetchMode($mode) 
     {
         self::$connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, $mode);
-
-        return self;
     }
 }
 

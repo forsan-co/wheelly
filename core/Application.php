@@ -6,7 +6,11 @@ class Application implements ArrayAccess
 	 * @var array
 	 */
 	protected $container;
- 
+
+    /**
+     * @param mixed $offset
+     * @return mixed|null
+     */
 	public function offsetGet($offset) {
 		if(!isset($this->container[$offset])){
 			return null;
@@ -16,7 +20,11 @@ class Application implements ArrayAccess
 		return $this->resolve($binding);
 	}
 
-	public function offsetSet($offset, $value) {
+    /**
+     * @param mixed $offset
+     * @param mixed $value
+     */
+    public function offsetSet($offset, $value) {
 		if(is_null($offset)) {
 			$this->container[] = $value;
 			return;
@@ -25,25 +33,44 @@ class Application implements ArrayAccess
 		$this->container[$offset] = $value;
 	}
 
-	public function offsetUnset($offset) {
+    /**
+     * @param mixed $offset
+     */
+    public function offsetUnset($offset) {
 		unset($this->container[$offset]);
 	}
 
-	public function offsetExists($offset) {
+    /**
+     * @param mixed $offset
+     * @return bool
+     */
+    public function offsetExists($offset) {
 		return isset($this->container[$offset]);
 	}
 
-	public function __get($binding) {
+    /**
+     * @param $binding
+     * @return mixed|null
+     */
+    public function __get($binding) {
 		return isset($this->container[$binding]) ? 
 			$this->resolve($this->container[$binding]) :
 			null;
 	}
 
-	public function __set($binding, $resolver) {
+    /**
+     * @param $binding
+     * @param $resolver
+     */
+    public function __set($binding, $resolver) {
 		$this->container[$binding] = $resolver;
 	}
 
-	protected function resolve($binding) {
+    /**
+     * @param $binding
+     * @return mixed
+     */
+    protected function resolve($binding) {
 		return is_callable($binding) ?
 			call_user_func($binding) :
 			$binding;
