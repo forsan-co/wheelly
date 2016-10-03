@@ -1,10 +1,14 @@
 <?php
 
-$app = new Application();
+Application::bind('config', require 'config.php');
+Application::bind('database',  new QueryBuilder(
+    Connection::make(Application::get('config')['database'])
+));
 
-$app['config'] = require 'config.php';
-$app['database'] =  new QueryBuilder(
-    Connection::make($app['config']['database'])
-);
 
+function view($name, $data = [])
+{
+    extract($data);
+    return require "views/{$name}.view.php";
+}
 
