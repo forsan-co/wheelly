@@ -1,5 +1,7 @@
 <?php
 
+namespace Wheel\Core\Database;
+
 class Connection 
 {
     /**
@@ -14,7 +16,7 @@ class Connection
     public static function make($config)
     {
         try {
-            self::$connection = new PDO(
+            self::$connection = new \PDO(
                 $config['connection'] . ';dbname=' . $config['name'],
                 $config['username'],
                 $config['password'],

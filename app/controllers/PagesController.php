@@ -1,5 +1,7 @@
 <?php 
 
+namespace Wheel\Controllers;
+
 class PagesController 
 {
     public function home() 

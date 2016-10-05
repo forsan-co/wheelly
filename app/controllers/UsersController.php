@@ -1,5 +1,9 @@
 <?php
 
+namespace Wheel\Controllers;
+
+use Wheel\Core\Application;
+
 class UsersController 
 {
     public function index() 

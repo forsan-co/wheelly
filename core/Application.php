@@ -1,5 +1,7 @@
 <?php 
 
+namespace Wheel\Core;
+
 class Application
 {
 	/**

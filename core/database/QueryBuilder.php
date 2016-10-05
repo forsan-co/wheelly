@@ -1,5 +1,7 @@
 <?php
 
+namespace Wheel\Core\Database;
+
 class QueryBuilder 
 {
     /**
@@ -10,7 +12,7 @@ class QueryBuilder
     /**
      * @param PDO $pdo
      */
-    public function __construct(PDO $pdo)
+    public function __construct(\PDO $pdo)
     {
         $this->pdo = $pdo;
     }

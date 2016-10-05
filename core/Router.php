@@ -1,5 +1,7 @@
 <?php
 
+namespace Wheel\Core;
+
 class Router 
 {
     protected $routes = [
@@ -34,15 +36,16 @@ class Router
             );
         }
 
-        throw new Exception('No route defined for this URI.');
+        throw new \Exception('No route defined for this URI.');
     }
 
     protected function callAction($controller, $action)
     {
-        $controllerInstance = new $controller();
+        $controller = "Wheel\\Controllers\\{$controller}";
+        $controllerInstance = new $controller;
 
         if(!method_exists($controllerInstance, $action)) {
-            throw new Exception("{$controller} does not respond to the {$action}.");
+            throw new \Exception("{$controller} does not respond to the {$action}.");
         }
         
         return $controllerInstance->$action();
